@@ -21,6 +21,39 @@ public class CountryModelBrain {
         }
     }
 
+    public void ethnicityOver(float percent){
+
+        System.out.println(" printing dominating ethnicities over "+percent);
+        for (CountryModel c:countries
+             ) {
+
+            try {
+                if(c.getDominateEthnicityPercentage()>=percent){
+                    System.out.println("Country :"+c.getName()+" Religion: "+c.getDominateEthnicity());
+                }
+            }catch (Exception e){
+                System.out.println("none");
+            }
+
+        }
+    }
+
+    public void top5Consumers(){
+        Collections.sort(countries,new ElectricityPerCapitaComparator());
+        System.out.println(" list of countries with highest Electricity per capita consumption");
+        System.out.print("1: ");
+        System.out.println(countries.get(countries.size()-1).getName());
+        System.out.print("2: ");
+        System.out.println(countries.get(countries.size()-2).getName());
+        System.out.print("3: ");
+        System.out.println(countries.get(countries.size()-3).getName());
+        System.out.print("4: ");
+        System.out.println(countries.get(countries.size()-4).getName());
+        System.out.print("5: ");
+        System.out.println(countries.get(countries.size()-5).getName());
+    }
+
+
     public void haveSymbol(String symbol){
 
         System.out.println("List of countries that have "+symbol+" in flag :");
@@ -39,7 +72,6 @@ public class CountryModelBrain {
             for (CountryModel c:countries
             ) {
                 if(c.getContinent().toLowerCase().equals(continent)){
-                    System.out.println("adding in list "+c.getName());
                     countriesOfContinent.add(c);
                 }
             }
@@ -67,19 +99,22 @@ public class CountryModelBrain {
             }
         }
     }
-    public void getCoverageBy(Float percent,String by){
+    public void getCoverageBy(String continent,Float percent,String by){
+
+
+        ArrayList<CountryModel> filteredCountries=getCountriesOfContinent(continent.toLowerCase());
         System.out.println("coverage by "+percent+" of"+ by);
         by=by.trim().toLowerCase();
         if(by.equals("forest")){
 
-            for (CountryModel c:countries
+            for (CountryModel c:filteredCountries
                  ) {
                 if(c.getForestCoverage() >= percent){
                     System.out.println(c.getName());
                 }
             }
         }else if(by.equals("forest")){
-            for (CountryModel c:countries
+            for (CountryModel c:filteredCountries
             ) {
                 if(c.getAgricultureCoverage() >= percent){
                     System.out.println(c.getName());

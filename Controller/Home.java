@@ -11,16 +11,20 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Home {
     private String url;
+    private CountryModelBrain brain;
+    Scanner sc = new Scanner(System.in);
 
     public Home(String url) {
         this.url = url;
     }
 
-    public ArrayList<CountryModel> getCountries() {
+    private ArrayList<CountryModel> getCountries() {
         ArrayList<CountryModel> countries = new ArrayList<>();
         boolean canStart = false;
 
@@ -52,14 +56,62 @@ public class Home {
 
     }
 
+
+    public void prepareEverything() {
+        brain = new CountryModelBrain(getCountries());
+    }
+
+    public void proneToHazards() {
+        System.out.println("Enter continent");
+        String continent = sc.nextLine().toLowerCase().trim();
+        System.out.println("Enter hazard");
+        String hazard = sc.nextLine().toLowerCase().trim();
+        brain.proneToHazard(continent, hazard);
+    }
+
+    public void symbolInFlag() {
+        System.out.println("Enter symbol");
+        brain.haveSymbol(sc.nextLine().toLowerCase().trim());
+    }
+
+    public void lowestElevationPoint() {
+        System.out.println("Enter Subcontinent");
+        brain.lowestElevationPointCountry(sc.nextLine().toLowerCase().trim());
+    }
+
+    public void findCoverage() {
+        System.out.println("Enter Coverage");
+        String continent = sc.nextLine().toLowerCase().trim();
+        System.out.println("Enter by (forest or agriculture)");
+        String by = sc.nextLine().toLowerCase().trim();
+        System.out.println("Enter percentage");
+        Float percent = sc.nextFloat();
+        brain.getCoverageBy(continent, percent, by);
+    }
+
+    public void findTop5() {
+        brain.top5Consumers();
+    }
+
+    public void findEthnicity() {
+
+        brain.ethnicityOver(sc.nextFloat());
+    }
+
+    public void findLandLocked() {
+
+        brain.landLockedOnes();
+    }
+
     public static void main(String[] args) {
         System.out.println("Setting up...");
         Home h = new Home("https://www.cia.gov/library/publications/the-world-factbook/print/textversion.html");
 
-       ArrayList<CountryModel> countries = h.getCountries();
-        CountryPopulator.populate(countries.get(0));
-       // CountryModelBrain brain = new CountryModelBrain(h.getCountries());
+        // ArrayList<CountryModel> countries = h.getCountries();
+        //CountryPopulator.populate(countries.get(0));
+        CountryModelBrain brain = new CountryModelBrain(h.getCountries());
 
+        brain.ethnicityOver(80);
 
 
     }

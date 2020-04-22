@@ -40,39 +40,37 @@ public class CountryPopulator {
         }
 
     }
-    private void setElectricityConsumptionPerCapita(CountryModel c){
+
+    private void setElectricityConsumptionPerCapita(CountryModel c) {
         setElectricityConsumption(c);
         setPopulation(c);
-        c.setElectricityConsumpCapita((c.getElectricityConsumpTotal()/c.getPopulation()));
+        c.setElectricityConsumpCapita((c.getElectricityConsumpTotal() / c.getPopulation()));
 
-        System.out.println(c.getElectricityConsumpCapita());
     }
 
-    private void setElectricityConsumption(CountryModel c){
+    private void setElectricityConsumption(CountryModel c) {
 
-        Element e=doc.getElementById("field-electricity-consumption");
-        if(e==null){
+        Element e = doc.getElementById("field-electricity-consumption");
+        if (e == null) {
             c.setElectricityConsumpTotal(-1);
         }
         try {
-
-            System.out.println(e.text());
-            String s=e.text().trim().toLowerCase();
+            String s = e.text().trim().toLowerCase();
             Pattern p = Pattern.compile("([0-9]+[.][0-9]+)");
             Matcher m = p.matcher(s);
             if (m.find()) {
-                c.setElectricityConsumpTotal(Float.parseFloat(m.group())*1000000000);
+                c.setElectricityConsumpTotal(Float.parseFloat(m.group()) * 1000000000);
             }
 
-        }catch (Exception exception){
+        } catch (Exception exception) {
             c.setElectricityConsumpTotal(-1);
         }
     }
 
-    private void setPopulation(CountryModel c){
+    private void setPopulation(CountryModel c) {
 
-        Element e=doc.getElementById("field-population");
-        if(e==null){
+        Element e = doc.getElementById("field-population");
+        if (e == null) {
 
             c.setPopulation(-1);
             return;
@@ -80,14 +78,14 @@ public class CountryPopulator {
 
         try {
 
-            String s=e.text().toLowerCase().trim().replace(",","");
+            String s = e.text().toLowerCase().trim().replace(",", "");
             Pattern p = Pattern.compile("\\d+");
             Matcher m = p.matcher(s);
             if (m.find()) {
                 c.setPopulation(Long.parseLong(m.group()));
             }
 
-        }catch (Exception exception){
+        } catch (Exception exception) {
             c.setPopulation(-1);
         }
     }
@@ -115,20 +113,20 @@ public class CountryPopulator {
     }
 
 
-    private void setContinent(CountryModel c){
-        Element e=doc.getElementsByTag("strong").first();
-        if(e==null){
+    private void setContinent(CountryModel c) {
+        Element e = doc.getElementsByTag("strong").first();
+        if (e == null) {
 
             c.setContinent("none");
             return;
         }
 
         try {
-            String s=e.text();
-            s=s.substring(0,s.indexOf(":"));
-            s=s.trim();
+            String s = e.text();
+            s = s.substring(0, s.indexOf(":"));
+            s = s.trim();
             c.setContinent(s.toLowerCase());
-        }catch (Exception exception){
+        } catch (Exception exception) {
             c.setContinent("none");
         }
 
@@ -253,7 +251,7 @@ public class CountryPopulator {
             c.setHazards(e.text());
 
         } catch (Exception exception) {
-           return;
+            return;
         }
     }
 
@@ -305,8 +303,8 @@ public class CountryPopulator {
         }
         try {
             String s = e.text();
-            s=s.replace(",","");
-            if(!e.text().toLowerCase().contains("mean")){
+            s = s.replace(",", "");
+            if (!e.text().toLowerCase().contains("mean")) {
                 c.setLowestElevation(-1);
                 return;
             }
