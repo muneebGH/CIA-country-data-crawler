@@ -34,6 +34,7 @@ public class CountryPopulator {
             cp.setContinent(c);
             cp.setAgricultureCoverage(c);
             cp.setElectricityConsumptionPerCapita(c);
+            cp.setBirthRateExpectancy(c);
         } catch (IOException e) {
             System.out.println("Error in populating");
             e.printStackTrace();
@@ -41,6 +42,29 @@ public class CountryPopulator {
 
     }
 
+
+    private void setBirthRateExpectancy(CountryModel c){
+
+        Element e=doc.getElementById("field-life-expectancy-at-birth");
+        if(e==null){
+            c.setLifeExpectancyAtBirth(-1);
+            return;
+        }
+
+        try {
+            String s=e.text().toLowerCase().trim();
+            Pattern p = Pattern.compile("([0-9]+[.][0-9]+)");
+            Matcher m = p.matcher(s);
+            if (m.find()) {
+                c.setLifeExpectancyAtBirth(Float.parseFloat(m.group()));
+            }
+
+        }catch (Exception exception){
+
+            c.setLifeExpectancyAtBirth(-1);
+        }
+
+    }
 
     private void setElectricityConsumptionPerCapita(CountryModel c) {
         setElectricityConsumption(c);

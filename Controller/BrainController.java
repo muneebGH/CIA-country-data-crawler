@@ -11,16 +11,15 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Home {
+public class BrainController {
     private String url;
     private CountryModelBrain brain;
     Scanner sc = new Scanner(System.in);
 
-    public Home(String url) {
+    public BrainController(String url) {
         this.url = url;
     }
 
@@ -107,9 +106,32 @@ public class Home {
         brain.top5DeathRateCountries();
     }
 
+    public void topMedianAge(){
+        brain.top10mediaAge();
+    }
+    public void topExpectancy(){
+
+        brain.top10BirthExpectancy();
+    }
+
+    public void overlapsBetweenMedianAndExpectancy(){
+        ArrayList<CountryModel> arr1=brain.top10mediaAge();
+        ArrayList<CountryModel> arr2=brain.top10BirthExpectancy();
+
+        System.out.println("Overlaps:");
+        for(int i=0;i<10;i++){
+            String a=arr1.get(i).getName().toLowerCase().trim();
+            for(int j=0;j<10;j++){
+                String b=arr2.get(j).getName().toLowerCase().trim();
+                if(a.equals(b)) System.out.println(a);
+            }
+        }
+
+    }
+
     public static void main(String[] args) {
         System.out.println("Setting up...");
-        Home h = new Home("https://www.cia.gov/library/publications/the-world-factbook/print/textversion.html");
+        BrainController h = new BrainController("https://www.cia.gov/library/publications/the-world-factbook/print/textversion.html");
 
          ArrayList<CountryModel> countries = h.getCountries();
         //

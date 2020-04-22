@@ -1,8 +1,10 @@
 package mine.Model;
 
-import java.io.IOException;
+import mine.Model.Comparators.*;
+
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.stream.Stream;
 
 public class CountryModelBrain {
     ArrayList<CountryModel> countries;
@@ -14,12 +16,47 @@ public class CountryModelBrain {
         int i=1;
         for (CountryModel c:countries
              ) {
-            System.out.println("populating country"+i+"...");
+            System.out.println("populating -> "+countries.get(i-1).getName()+" Country No : "+i+"...");
             CountryPopulator.populate(c);
             i++;
-
         }
     }
+
+    public ArrayList<CountryModel> top10BirthExpectancy(){
+        System.out.println("top 10 countries with birthRateExpectancy:");
+        ArrayList<CountryModel> arr=new ArrayList<>(10);
+        Collections.sort(countries,new BirthExpectancyComparator());
+        for(int i=0;i<10;i++){
+            arr.add(countries.get(countries.size()-(i+1)));
+        }
+
+        for (CountryModel c:arr
+        ) {
+            System.out.println(c.getName());
+        }
+
+        return arr;
+    }
+
+
+    public ArrayList<CountryModel> top10mediaAge(){
+
+        System.out.println("top 10 countries with highest median age:");
+        ArrayList<CountryModel> arr=new ArrayList<>(10);
+        Collections.sort(countries,new MedianAgeComparator());
+        for(int i=0;i<10;i++){
+            arr.add(countries.get(countries.size()-(i+1)));
+        }
+
+        for (CountryModel c:arr
+             ) {
+            System.out.println(c.getName());
+        }
+
+        return arr;
+    }
+
+
 
     public void top5DeathRateCountries(){
 
@@ -130,7 +167,7 @@ public class CountryModelBrain {
                     System.out.println(c.getName());
                 }
             }
-        }else if(by.equals("forest")){
+        }else if(by.equals("agriculture")){
             for (CountryModel c:filteredCountries
             ) {
                 if(c.getAgricultureCoverage() >= percent){

@@ -1,4 +1,6 @@
-package mine.Model;
+package mine.Model.Comparators;
+
+import mine.Model.CountryModel;
 
 import java.util.Comparator;
 

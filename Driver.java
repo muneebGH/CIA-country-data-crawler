@@ -1,16 +1,14 @@
 package mine;
 
-import mine.Controller.Home;
-import mine.Model.CountryModelBrain;
+import mine.Controller.BrainController;
 
-import java.awt.*;
 import java.util.Scanner;
 
 public class Driver {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        Home controller = new Home("https://www.cia.gov/library/publications/the-world-factbook/print/textversion.html");
+        BrainController controller = new BrainController("https://www.cia.gov/library/publications/the-world-factbook/print/textversion.html");
         controller.prepareEverything();
         boolean repeat = true;
         while (repeat) {
@@ -22,6 +20,9 @@ public class Driver {
             System.out.println("press 6 to find countries with dominant ethnicity over _%");
             System.out.println("press 7 to find landlocked countries");
             System.out.println("press 8 to find top 5 countries with highest death rate");
+            System.out.println("press 9 to find top 10 median ages");
+            System.out.println("press 10 to find top 10 birth age expectancies");
+            System.out.println("press 11 to find median age and birthRateExpectancies");
             System.out.println("press something else to exit");
 
 
@@ -50,6 +51,15 @@ public class Driver {
                     break;
                 case 8:
                     controller.top5DeathRates();
+                    break;
+                case 9:
+                    controller.topMedianAge();
+                    break;
+                case 10:
+                    controller.topExpectancy();
+                    break;
+                case 11:
+                    controller.overlapsBetweenMedianAndExpectancy();
                     break;
                 default:
                     repeat = false;
