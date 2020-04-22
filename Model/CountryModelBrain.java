@@ -21,6 +21,23 @@ public class CountryModelBrain {
         }
     }
 
+    public void top5DeathRateCountries(){
+
+        Collections.sort(countries,new DeathRateComparator());
+        System.out.println(" list of countries with highest death rate");
+        System.out.print("1: ");
+        System.out.println(countries.get(countries.size()-1).getName());
+        System.out.print("2: ");
+        System.out.println(countries.get(countries.size()-2).getName());
+        System.out.print("3: ");
+        System.out.println(countries.get(countries.size()-3).getName());
+        System.out.print("4: ");
+        System.out.println(countries.get(countries.size()-4).getName());
+        System.out.print("5: ");
+        System.out.println(countries.get(countries.size()-5).getName());
+    }
+
+
     public void ethnicityOver(float percent){
 
         System.out.println(" printing dominating ethnicities over "+percent);

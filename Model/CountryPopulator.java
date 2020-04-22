@@ -41,6 +41,7 @@ public class CountryPopulator {
 
     }
 
+
     private void setElectricityConsumptionPerCapita(CountryModel c) {
         setElectricityConsumption(c);
         setPopulation(c);

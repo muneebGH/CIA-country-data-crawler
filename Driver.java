@@ -21,6 +21,7 @@ public class Driver {
             System.out.println("press 5 to Find the top 5 countries with the highest electricity consumption per capita.");
             System.out.println("press 6 to find countries with dominant ethnicity over _%");
             System.out.println("press 7 to find landlocked countries");
+            System.out.println("press 8 to find top 5 countries with highest death rate");
             System.out.println("press something else to exit");
 
 
@@ -46,6 +47,9 @@ public class Driver {
                     break;
                 case 7:
                     controller.findLandLocked();
+                    break;
+                case 8:
+                    controller.top5DeathRates();
                     break;
                 default:
                     repeat = false;

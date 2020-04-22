@@ -24,7 +24,7 @@ public class Home {
         this.url = url;
     }
 
-    private ArrayList<CountryModel> getCountries() {
+    public ArrayList<CountryModel> getCountries() {
         ArrayList<CountryModel> countries = new ArrayList<>();
         boolean canStart = false;
 
@@ -103,15 +103,20 @@ public class Home {
         brain.landLockedOnes();
     }
 
+    public void top5DeathRates(){
+        brain.top5DeathRateCountries();
+    }
+
     public static void main(String[] args) {
         System.out.println("Setting up...");
         Home h = new Home("https://www.cia.gov/library/publications/the-world-factbook/print/textversion.html");
 
-        // ArrayList<CountryModel> countries = h.getCountries();
-        //CountryPopulator.populate(countries.get(0));
-        CountryModelBrain brain = new CountryModelBrain(h.getCountries());
+         ArrayList<CountryModel> countries = h.getCountries();
+        //
+        CountryPopulator.populate(countries.get(0));
+        //CountryModelBrain brain = new CountryModelBrain(h.getCountries());
 
-        brain.ethnicityOver(80);
+       // brain.ethnicityOver(80);
 
 
     }
