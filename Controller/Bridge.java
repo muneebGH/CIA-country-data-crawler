@@ -11,7 +11,7 @@ public class Bridge {
         SplashView.hide();
     }
 
-    public static void runDataLoaderForSplash(){
+    public static void runDataLoaderFromInternet(){
         ResourceHouse.controller.prepareEverything();
     }
 
