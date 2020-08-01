@@ -20,7 +20,7 @@ public class CountryModel {
     private long population;
     private String dominateEthnicity;
     private boolean landlocked;
-    private String deathRate;
+    private float deathRate;
     private float dominateEthnicityPercentage;
     private int deathRateRank;
     private float lifeExpectancyAtBirth;
@@ -28,8 +28,9 @@ public class CountryModel {
     private String continent;
     private float medianAge;
     private int medianAgeRank;
-
-
+    private double lat;
+    private double lon;
+    private ArrayList<String> sorroundings;
 
 
     public CountryModel(String name, String url) {
@@ -46,7 +47,7 @@ public class CountryModel {
         population=-1;
         dominateEthnicity="none";
         landlocked=false;
-        deathRate="none";
+        deathRate=-1;
         dominateEthnicityPercentage=-1;
         deathRateRank=-1;
         medianAge=-1;
@@ -54,8 +55,37 @@ public class CountryModel {
         continent="";
         agricultureCoverage=0;
         lifeExpectancyAtBirth=-1;
+        lat=-1;
+        lon=-1;
+        sorroundings=new ArrayList<>();
     }
 
+
+
+    public ArrayList<String> getSorroundings() {
+        return sorroundings;
+    }
+
+    public void setSorroundings(ArrayList<String> sorroundings) {
+        this.sorroundings = sorroundings;
+    }
+
+
+    public double getLat() {
+        return lat;
+    }
+
+    public void setLat(double lat) {
+        this.lat = lat;
+    }
+
+    public double getLon() {
+        return lon;
+    }
+
+    public void setLon(double lon) {
+        this.lon = lon;
+    }
 
     public float getLifeExpectancyAtBirth() {
         return lifeExpectancyAtBirth;
@@ -179,7 +209,7 @@ public class CountryModel {
         this.landlocked = landlocked;
     }
 
-    public void setDeathRate(String deathRate) {
+    public void setDeathRate(float deathRate) {
         this.deathRate = deathRate;
     }
 
@@ -228,7 +258,7 @@ public class CountryModel {
         return landlocked;
     }
 
-    public String getDeathRate() {
+    public float getDeathRate() {
         return deathRate;
     }
 

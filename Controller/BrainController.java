@@ -61,6 +61,8 @@ public class BrainController {
     }
 
     public void proneToHazards() {
+
+        sc=new Scanner(System.in);
         System.out.println("Enter continent");
         String continent = sc.nextLine().toLowerCase().trim();
         System.out.println("Enter hazard");
@@ -69,16 +71,21 @@ public class BrainController {
     }
 
     public void symbolInFlag() {
+
+        sc=new Scanner(System.in);
         System.out.println("Enter symbol");
         brain.haveSymbol(sc.nextLine().toLowerCase().trim());
     }
 
     public void lowestElevationPoint() {
+
+        sc=new Scanner(System.in);
         System.out.println("Enter Subcontinent");
         brain.lowestElevationPointCountry(sc.nextLine().toLowerCase().trim());
     }
 
     public void findCoverage() {
+        sc=new Scanner(System.in);
         System.out.println("Enter Coverage");
         String continent = sc.nextLine().toLowerCase().trim();
         System.out.println("Enter by (forest or agriculture)");
@@ -88,11 +95,17 @@ public class BrainController {
         brain.getCoverageBy(continent, percent, by);
     }
 
-    public void findTop5() {
-        brain.top5Consumers();
+    public void findTopConsumers() {
+
+        sc=new Scanner(System.in);
+        System.out.println("Enter Number ");
+        brain.topConsumers(sc.nextInt());
     }
 
     public void findEthnicity() {
+
+        sc=new Scanner(System.in);
+        System.out.println("Enter precentage");
 
         brain.ethnicityOver(sc.nextFloat());
     }
@@ -102,28 +115,44 @@ public class BrainController {
         brain.landLockedOnes();
     }
 
-    public void top5DeathRates(){
-        brain.top5DeathRateCountries();
+    public void topDeathRates(){
+
+        sc=new Scanner(System.in);
+        System.out.println("Enter Number ");
+        brain.topDeathRateCountries(sc.nextInt());
     }
 
     public void topMedianAge(){
-        brain.top10mediaAge();
+
+        sc=new Scanner(System.in);
+        System.out.println("Enter Number ");
+        brain.topmedianAges(sc.nextInt());
     }
+
     public void topExpectancy(){
 
-        brain.top10BirthExpectancy();
+
+        sc=new Scanner(System.in);
+        System.out.println("Enter Number ");
+        brain.topBirthExpectancies(sc.nextInt());
     }
 
     public void overlapsBetweenMedianAndExpectancy(){
-        ArrayList<CountryModel> arr1=brain.top10mediaAge();
-        ArrayList<CountryModel> arr2=brain.top10BirthExpectancy();
+
+        sc=new Scanner(System.in);
+        System.out.println("Enter Number for median ages");
+        int m=sc.nextInt();
+        System.out.println("Enter number for birth expectancies");
+        int b=sc.nextInt();
+        ArrayList<CountryModel> arr1=brain.topmedianAges(m);
+        ArrayList<CountryModel> arr2=brain.topBirthExpectancies(b);
 
         System.out.println("Overlaps:");
-        for(int i=0;i<10;i++){
+        for(int i=0;i<m;i++){
             String a=arr1.get(i).getName().toLowerCase().trim();
-            for(int j=0;j<10;j++){
-                String b=arr2.get(j).getName().toLowerCase().trim();
-                if(a.equals(b)) System.out.println(a);
+            for(int j=0;j<b;j++){
+                String s=arr2.get(j).getName().toLowerCase().trim();
+                if(a.equals(s)) System.out.println(a);
             }
         }
 
@@ -136,8 +165,9 @@ public class BrainController {
          ArrayList<CountryModel> countries = h.getCountries();
         //
         CountryPopulator.populate(countries.get(0));
-        //CountryModelBrain brain = new CountryModelBrain(h.getCountries());
+       // CountryModelBrain brain = new CountryModelBrain(h.getCountries());
 
+        //System.out.println(brain);
        // brain.ethnicityOver(80);
 
 

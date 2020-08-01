@@ -5,6 +5,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -35,6 +36,8 @@ public class CountryPopulator {
             cp.setAgricultureCoverage(c);
             cp.setElectricityConsumptionPerCapita(c);
             cp.setBirthRateExpectancy(c);
+            cp.setCoordinates(c);
+            cp.setSorroundings(c);
         } catch (IOException e) {
             System.out.println("Error in populating");
             e.printStackTrace();
@@ -42,6 +45,67 @@ public class CountryPopulator {
 
     }
 
+
+    private void setSorroundings(CountryModel c){
+
+        Element e=doc.getElementById("field-land-boundaries");
+        if(e==null){
+            return;
+        }
+
+        try {
+
+            ArrayList<String> srr=new ArrayList<>();
+            String s=e.text();
+            s=s.toLowerCase();
+            s=s.substring(s.indexOf("countries"),s.length());
+            s=s.substring(s.indexOf(":"),s.length());
+            s=s.replaceAll("[0-9]","");
+            s=s.replace(":","");
+            s=s.trim();
+            String[] arr=s.split(",");
+            for(int i=0;i<arr.length;i++){
+
+                srr.add(arr[i].substring(0,arr[i].length()-2).trim());
+
+            }
+            c.setSorroundings(srr);
+        }catch (Exception exception){
+
+        }
+
+
+    }
+
+    private void setCoordinates(CountryModel c){
+        Element e=doc.getElementById("field-capital");
+        if(e==null){
+            return;
+        }
+
+        try {
+
+            String s=e.text();
+            Pattern p = Pattern.compile("\\d+");
+            Matcher m = p.matcher(s);
+            if(m.find()){
+                c.setLat(Double.parseDouble(m.group()));
+            }
+            if(m.find()){
+                c.setLat(c.getLat()+(Double.parseDouble(m.group())/60));
+            }
+            if(m.find()){
+                c.setLon(Double.parseDouble(m.group()));
+            }
+            if(m.find()){
+                c.setLon(c.getLon()+(Double.parseDouble(m.group())/60));
+            }
+
+        }catch (Exception exception){
+
+            System.out.println("no lat long for capital "+c.getName());
+        }
+    }
 
     private void setBirthRateExpectancy(CountryModel c){
 
@@ -194,24 +258,34 @@ public class CountryPopulator {
     private void setDeathRate(CountryModel c) {
         Element e = doc.getElementById("field-death-rate");
         if (e == null) {
-            c.setDeathRate("not available");
             return;
         }
 
+        int temp=0;
         try {
 
+
+            Pattern o=Pattern.compile("\\d+");
+            Matcher z=o.matcher(e.text());
+            if (z.find()) {
+                c.setDeathRate(Float.parseFloat(z.group()));
+            }
+
             String s = e.text();
-            c.setDeathRate(s);
+            Pattern x = Pattern.compile("([0-9]+[.][0-9]+)");
+            Matcher m = x.matcher(s);
+            if(m.find()) c.setDeathRate(Float.parseFloat(m.group()));
             s = s.substring(s.indexOf("world"));
             Pattern p = Pattern.compile("\\d+");
-            Matcher m = p.matcher(s);
-            if (m.find()) {
-                c.setDeathRateRank(Integer.parseInt(m.group()));
+            Matcher n = p.matcher(s);
+            if (n.find()) {
+                c.setDeathRateRank(Integer.parseInt(n.group()));
             }
 
         } catch (Exception exception) {
-            c.setDeathRate("not available");
+
         }
+       // System.out.println();
 
     }
 

@@ -7,8 +7,8 @@ import java.util.Comparator;
 public class DeathRateComparator implements Comparator {
     @Override
     public int compare(Object o1, Object o2) {
-        int r1=((CountryModel)o1).getDeathRateRank();
-        int r2=((CountryModel)o1).getDeathRateRank();
+        float r1=((CountryModel)o1).getDeathRate();
+        float r2=((CountryModel)o2).getDeathRate();
         if(r1==r2){
             return 0;
         }

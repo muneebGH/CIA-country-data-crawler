@@ -16,13 +16,13 @@ public class Driver {
             System.out.println("press 2 to list countries that have _ symbol in flag ");
             System.out.println("press 3 to find country with lowest elevation point in _ continent");
             System.out.println("press 4 to List countries in _ have at least _ % of their land covered in _");
-            System.out.println("press 5 to Find the top 5 countries with the highest electricity consumption per capita.");
+            System.out.println("press 5 to Find the top _ countries with the highest electricity consumption per capita.");
             System.out.println("press 6 to find countries with dominant ethnicity over _%");
             System.out.println("press 7 to find landlocked countries");
-            System.out.println("press 8 to find top 5 countries with highest death rate");
-            System.out.println("press 9 to find top 10 median ages");
-            System.out.println("press 10 to find top 10 birth age expectancies");
-            System.out.println("press 11 to find median age and birthRateExpectancies");
+            System.out.println("press 8 to find top _ countries with highest death rate");
+            System.out.println("press 9 to find top _ median ages");
+            System.out.println("press 10 to find top _ birth age expectancies");
+            System.out.println("press 11 to find _ median age and _ birthRateExpectancies overlaps");
             System.out.println("press something else to exit");
 
 
@@ -41,7 +41,7 @@ public class Driver {
                     controller.findCoverage();
                     break;
                 case 5:
-                    controller.findTop5();
+                    controller.findTopConsumers();
                     break;
                 case 6:
                     controller.findEthnicity();
@@ -50,7 +50,7 @@ public class Driver {
                     controller.findLandLocked();
                     break;
                 case 8:
-                    controller.top5DeathRates();
+                    controller.topDeathRates();
                     break;
                 case 9:
                     controller.topMedianAge();

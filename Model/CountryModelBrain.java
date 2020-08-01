@@ -1,5 +1,6 @@
 package mine.Model;
 
+import mine.Controller.Bridge;
 import mine.Model.Comparators.*;
 
 import java.util.ArrayList;
@@ -8,25 +9,73 @@ import java.util.stream.Stream;
 
 public class CountryModelBrain {
     ArrayList<CountryModel> countries;
+    ArrayList<ArrayList<CountryModel>> arr;
 
 
     public CountryModelBrain(ArrayList<CountryModel> countries) {
 
         this.countries = countries;
+        arr=new ArrayList<>(countries.size());
         int i=1;
         for (CountryModel c:countries
              ) {
-            System.out.println("populating -> "+countries.get(i-1).getName()+" Country No : "+i+"...");
+            Bridge.passDataToSplash(""+countries.get(i-1).getName(),i);
+            System.out.println("populating -> "+countries.get(i-1).getName()+" Country No : "+i+"/267 ...");
             CountryPopulator.populate(c);
             i++;
         }
+        Bridge.finishedLoading();
+//        populateLatLongDifferences();
+//
+//        for (ArrayList<CountryModel> x:arr
+//             ) {
+//            System.out.println();
+//            for (CountryModel c:x
+//                 ) {
+//                System.out.print("->"+c.getName());
+//            }
+//        }
+
     }
 
-    public ArrayList<CountryModel> top10BirthExpectancy(){
-        System.out.println("top 10 countries with birthRateExpectancy:");
-        ArrayList<CountryModel> arr=new ArrayList<>(10);
+    public void populateLatLongDifferences(){
+        int i=0;
+        for (CountryModel c:countries
+             ) {
+
+            if(c.getLat()==-1 || c.getLon()==-1){
+                continue;
+            }
+            ArrayList<CountryModel> inner=new ArrayList<>();
+            inner.add(0,c);
+            arr.add(i,inner);
+            int y=1;
+            for (CountryModel x:countries
+                 ) {
+                if(c.getName().toLowerCase().trim().equals(x.getName().toLowerCase().trim())){
+                    continue;
+                }
+                if(x.getLat()==-1 || x.getLon()==-1){
+                    continue;
+                }
+                double latDiff=Math.abs(c.getLat()-x.getLat());
+                double lonDiff=Math.abs(c.getLon()-x.getLon());
+                if(latDiff<=10 && lonDiff<=10){
+
+                    inner.add(y,x);
+                }
+
+            }
+
+
+        }
+    }
+
+    public ArrayList<CountryModel> topBirthExpectancies(int n){
+        System.out.println("top n countries with birthRateExpectancy:");
+        ArrayList<CountryModel> arr=new ArrayList<>(n);
         Collections.sort(countries,new BirthExpectancyComparator());
-        for(int i=0;i<10;i++){
+        for(int i=0;i<n;i++){
             arr.add(countries.get(countries.size()-(i+1)));
         }
 
@@ -39,12 +88,12 @@ public class CountryModelBrain {
     }
 
 
-    public ArrayList<CountryModel> top10mediaAge(){
+    public ArrayList<CountryModel> topmedianAges(int n){
 
-        System.out.println("top 10 countries with highest median age:");
-        ArrayList<CountryModel> arr=new ArrayList<>(10);
+        System.out.println("top "+n+" countries with highest median age:");
+        ArrayList<CountryModel> arr=new ArrayList<>(n);
         Collections.sort(countries,new MedianAgeComparator());
-        for(int i=0;i<10;i++){
+        for(int i=0;i<n;i++){
             arr.add(countries.get(countries.size()-(i+1)));
         }
 
@@ -58,20 +107,20 @@ public class CountryModelBrain {
 
 
 
-    public void top5DeathRateCountries(){
+    public void topDeathRateCountries(int n){
 
         Collections.sort(countries,new DeathRateComparator());
+
         System.out.println(" list of countries with highest death rate");
-        System.out.print("1: ");
-        System.out.println(countries.get(countries.size()-1).getName());
-        System.out.print("2: ");
-        System.out.println(countries.get(countries.size()-2).getName());
-        System.out.print("3: ");
-        System.out.println(countries.get(countries.size()-3).getName());
-        System.out.print("4: ");
-        System.out.println(countries.get(countries.size()-4).getName());
-        System.out.print("5: ");
-        System.out.println(countries.get(countries.size()-5).getName());
+        for(int i=0;i<n;i++){
+
+
+            System.out.print(i+1+": ");
+
+            System.out.println(countries.get(countries.size()-(i+1)).getName());
+        }
+
+
     }
 
 
@@ -92,19 +141,19 @@ public class CountryModelBrain {
         }
     }
 
-    public void top5Consumers(){
+    public void topConsumers(int n){
         Collections.sort(countries,new ElectricityPerCapitaComparator());
         System.out.println(" list of countries with highest Electricity per capita consumption");
-        System.out.print("1: ");
-        System.out.println(countries.get(countries.size()-1).getName());
-        System.out.print("2: ");
-        System.out.println(countries.get(countries.size()-2).getName());
-        System.out.print("3: ");
-        System.out.println(countries.get(countries.size()-3).getName());
-        System.out.print("4: ");
-        System.out.println(countries.get(countries.size()-4).getName());
-        System.out.print("5: ");
-        System.out.println(countries.get(countries.size()-5).getName());
+
+        for(int i=0;i<n;i++){
+
+
+            System.out.print(i+1+": ");
+
+            System.out.println(countries.get(countries.size()-(i+1)).getName());
+        }
+
+
     }
 
 
@@ -148,10 +197,37 @@ public class CountryModelBrain {
         System.out.println("LandLocked Countries :");
         for (CountryModel c:
              countries) {
-            if(c.isLandlocked()){
+            int i=0;
+            ArrayList<String> srr=c.getSorroundings();
+            for (String s:srr
+                 ) {
+
+                if(findLandLocked(s)){
+
+                    i++;
+                }
+
+            }
+            if(i==srr.size() && i>=2){
                 System.out.println(c.getName());
             }
         }
+    }
+
+    private boolean findLandLocked(String name){
+
+
+        for (CountryModel c:countries
+             ) {
+            if(c.getName().toLowerCase().trim().equals(name)){
+                if(c.isLandlocked()){
+                    return true;
+                }
+
+            }
+        }
+
+        return false;
     }
     public void getCoverageBy(String continent,Float percent,String by){
 
@@ -190,4 +266,12 @@ public class CountryModelBrain {
         }
     }
 
+
+    @Override
+    public String toString() {
+        return "CountryModelBrain{" +
+                "countries=" + countries +
+                ", arr=" + arr +
+                '}';
+    }
 }
