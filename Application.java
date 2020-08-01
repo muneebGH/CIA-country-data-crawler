@@ -2,6 +2,7 @@ package mine;
 
 import mine.Controller.Bridge;
 import mine.Controller.Utils;
+import mine.views.CenterView;
 import mine.views.SplashView;
 
 import javax.swing.*;
@@ -16,7 +17,8 @@ public class Application {
 
         frame.setLayout(borderLayout);
         frame.setSize(700,600);
-        Application.setAppData();
+       // Application.setAppData();
+        frame.add(new CenterView().getView(),borderLayout.CENTER);
         frame.setVisible(true);
 
     }

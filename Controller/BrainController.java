@@ -18,13 +18,14 @@ public class BrainController {
     private String url;
     private CountryModelBrain brain;
     Scanner sc = new Scanner(System.in);
+    ArrayList<CountryModel> countries;
 
     public BrainController(String url) {
         this.url = url;
     }
 
     public ArrayList<CountryModel> getCountries() {
-        ArrayList<CountryModel> countries = new ArrayList<>();
+        countries = new ArrayList<>();
         boolean canStart = false;
 
         Connection con = Jsoup.connect(url);
@@ -158,6 +159,9 @@ public class BrainController {
 
     }
 
+    public ArrayList getList(){
+        return countries;
+    }
     public static void main(String[] args) {
         System.out.println("Setting up...");
         BrainController h = new BrainController("https://www.cia.gov/library/publications/the-world-factbook/print/textversion.html");
@@ -172,4 +176,6 @@ public class BrainController {
 
 
     }
+
+
 }
