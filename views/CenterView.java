@@ -2,7 +2,6 @@ package mine.views;
 
 import mine.Controller.ResourceHouse;
 import mine.Model.CountryModel;
-import orig.Country;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -36,6 +35,10 @@ public class CenterView {
 
     public static void renderList(ArrayList<CountryModel> countries){
         text=new JTextArea("No Items Selected : select items to display details");
+        Font font = new Font("Verdana", Font.BOLD, 12);
+        text.setFont(font);
+        text.setBackground(Color.blue);
+        text.setForeground(Color.WHITE);
         text.setEditable(false);
         listModel=new DefaultListModel<>();
 

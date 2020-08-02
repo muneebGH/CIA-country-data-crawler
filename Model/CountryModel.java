@@ -265,28 +265,26 @@ public class CountryModel {
 
     @Override
     public String toString() {
-        return "CountryModel{" +
-                "\nname='" + name + '\'' +
-                "\n, url='" + url + '\'' +
-                ",\n hazards='" + hazards + '\'' +
-                ",\n proneToEQ=" + proneToEQ +
-                ",\n hasStarInflag=" + hasStarInflag +
-                ",\n flagDesc='" + flagDesc + '\'' +
-                ",\n lowestElevation=" + lowestElevation +
-                ",\n forestCoverage=" + forestCoverage +
-                ",\n electricityConsumpTotal=" + electricityConsumpTotal +
-                ",\n electricityConsumpCapita=" + electricityConsumpCapita +
-                ",\n population=" + population +
-                ",\n dominateEthnicity='" + dominateEthnicity + '\'' +
-                ",\n landlocked=" + landlocked +
-                ",\n deathRate='" + deathRate + '\'' +
-                ",\n dominateEthnicityPercentage=" + dominateEthnicityPercentage +
-                ",\n deathRateRank=" + deathRateRank +
-                ",\n lifeExpectancyAtBirth=" + lifeExpectancyAtBirth +
-                ",\n agricultureCoverage=" + agricultureCoverage +
-                ",\n continent='" + continent + '\'' +
-                ",\n medianAge=" + medianAge +
-                ",\n medianAgeRank=" + medianAgeRank +
-                '}';
+        return "" +
+                "\nName : " + name + "" +
+                "\n\nURL : " + url + "" +
+                "\n\nFlag Description : " + flagDesc + "" +
+                "\n\nHazards : " + hazards + "" +
+                "\nProne To EarthQuake : " + proneToEQ +
+                "\nLowest Elevation point : " + lowestElevation +
+                "\n Forest Coverage : " + forestCoverage +
+                "\n Electricity Consumption Total : " + electricityConsumpTotal +
+                "\n Electricity Consumption per Capita : " + electricityConsumpCapita +
+                "\n Population : " + population +
+                "\n Dominate Religion : " + dominateEthnicity + "" +
+                "\n Landlocked : " + landlocked +
+                "\n DeathRate : " + deathRate + "" +
+                "\n Dominate Ethnicity Percentage : " + dominateEthnicityPercentage +
+                "\n Death Rate Rank : " + deathRateRank +
+                "\n Life Expectancy At Birth : " + lifeExpectancyAtBirth +
+                "\n Agriculture Land Coverage : " + agricultureCoverage +
+                "\n Continent : " + continent + "" +
+                "\n Median Age : " + medianAge +
+                "\n Median Age Rank : " + medianAgeRank ;
     }
 }
