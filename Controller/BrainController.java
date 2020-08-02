@@ -132,6 +132,24 @@ public class BrainController {
         CenterView.renderList();
     }
 
+    public void sortByPopulation(){
+        brain.sortByPopulation();
+        CenterView.renderList();
+    }
+
+
+    public void sortByForestCoverage(){
+        brain.sortByForestCoverage();
+        CenterView.renderList();
+    }
+
+    public void sortByAgricultureCoverage(){
+        brain.sortByAgricultureCoverage();
+        CenterView.renderList();
+    }
+
+
+
     public void sortByBirthExpectancy(){
         brain.sortByBirthExpectancies();
         CenterView.renderList();
@@ -161,20 +179,7 @@ public class BrainController {
     public ArrayList getList(){
         return brain.getList();
     }
-    public static void main(String[] args) {
-        System.out.println("Setting up...");
-        BrainController h = new BrainController("https://www.cia.gov/library/publications/the-world-factbook/print/textversion.html");
 
-         ArrayList<CountryModel> countries = h._getCountries();
-        //
-        CountryPopulator.populate(countries.get(0));
-       // CountryModelBrain brain = new CountryModelBrain(h.getCountries());
-
-        //System.out.println(brain);
-       // brain.ethnicityOver(80);
-
-
-    }
 
 
 }

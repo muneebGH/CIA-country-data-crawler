@@ -112,6 +112,24 @@ public class CenterView {
             }
             return true;
 
+        }else if(selectedVal.equals("Population")){
+            if(c.getPopulation()<0){
+                return false;
+            }
+            return true;
+
+        }else if(selectedVal.equals("Forest Coverage")){
+            if(c.getForestCoverage()<0){
+                return false;
+            }
+            return true;
+
+        }else if(selectedVal.equals("Agriculture Coverage")){
+            if(c.getAgricultureCoverage()<0){
+                return false;
+            }
+            return true;
+
         }else{
             return true;
         }

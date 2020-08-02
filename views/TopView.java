@@ -23,9 +23,12 @@ public class TopView {
         options=new JComboBox();
         options.addItem("Default");
         options.addItem("Death Rate");
+        options.addItem("Population");
         options.addItem("Birth Expectancy");
         options.addItem("Median Age");
         options.addItem("Electricity consumption");
+        options.addItem("Forest Coverage");
+        options.addItem("Agriculture Coverage");
         applyComboBoxListner();
 
 
@@ -50,22 +53,35 @@ public class TopView {
 
     private void applyComboBoxListner(){
         options.addActionListener(e -> {
-            if(options.getSelectedItem().toString().toLowerCase().trim().equals("death rate")){
+            String selectedItem=options.getSelectedItem().toString().trim();
+            if(selectedItem.equals("Death Rate")){
                 ResourceHouse.controller.sortByDeathRate();
 
-
-            }else if(options.getSelectedItem().toString().toLowerCase().trim().equals("electricity consumption")){
+            }else if(selectedItem.equals("Electricity consumption")){
 
 
                 ResourceHouse.controller.sortByElectricityConsumption();
 
-            }else if(options.getSelectedItem().toString().toLowerCase().trim().equals("median age")){
+            }else if(selectedItem.equals("Median Age")){
 
                 ResourceHouse.controller.sortByMedianAge();
 
-            }else if(options.getSelectedItem().toString().toLowerCase().trim().equals("birth expectancy")){
+            }else if(selectedItem.equals("Birth Expectancy")){
 
                 ResourceHouse.controller.sortByBirthExpectancy();
+
+            }
+            else if(selectedItem.equals("Population")){
+
+                ResourceHouse.controller.sortByPopulation();
+
+            }else if(selectedItem.equals("Forest Coverage")){
+
+                ResourceHouse.controller.sortByForestCoverage();
+
+            }else if(selectedItem.equals("Agriculture Coverage")){
+
+                ResourceHouse.controller.sortByAgricultureCoverage();
 
             }
             else{

@@ -157,6 +157,22 @@ public class CountryModelBrain {
 
     }
 
+    public void sortByPopulation(){
+        Collections.sort(countries,new PopulationComparator());
+    }
+
+
+    public void sortByForestCoverage(){
+        Collections.sort(countries,new ForestCoverageComparator());
+    }
+
+    public void sortByAgricultureCoverage(){
+        Collections.sort(countries,new AgricultureCoverageComparator());
+    }
+
+
+
+
     public void landLockedOnes(){
         System.out.println("LandLocked Countries :");
         for (CountryModel c:

@@ -53,7 +53,7 @@ public class CountryModel {
         medianAge=-1;
         medianAgeRank=-1;
         continent="";
-        agricultureCoverage=0;
+        agricultureCoverage=-1;
         lifeExpectancyAtBirth=-1;
         lat=-1;
         lon=-1;
