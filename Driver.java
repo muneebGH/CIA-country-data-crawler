@@ -41,7 +41,7 @@ public class Driver {
                     controller.findCoverage();
                     break;
                 case 5:
-                    controller.findTopConsumers();
+                    controller.sortByElectricityConsumption();
                     break;
                 case 6:
                     controller.findEthnicity();
@@ -50,16 +50,13 @@ public class Driver {
                     controller.findLandLocked();
                     break;
                 case 8:
-                    controller.topDeathRates();
+                    controller.sortByDeathRate();
                     break;
                 case 9:
-                    controller.topMedianAge();
+                    controller.sortByMedianAge();
                     break;
                 case 10:
-                    controller.topExpectancy();
-                    break;
-                case 11:
-                    controller.overlapsBetweenMedianAndExpectancy();
+                    controller.sortByBirthExpectancy();
                     break;
                 default:
                     repeat = false;

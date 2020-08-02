@@ -18,7 +18,7 @@ public class Application {
 
         frame.setLayout(borderLayout);
         frame.setSize(700,600);
-       // Application.setAppData();
+        Application.setAppData();
         frame.add(new CenterView().getView(),borderLayout.CENTER);
         frame.add(new TopView().getView(),borderLayout.NORTH);
         frame.setVisible(true);

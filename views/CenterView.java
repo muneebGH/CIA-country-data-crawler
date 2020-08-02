@@ -32,7 +32,7 @@ public class CenterView {
         text.setEditable(false);
         renderList();
         jSplitPane.setRightComponent(text);
-        jSplitPane.setDividerLocation(150);
+
 
 
 
@@ -46,10 +46,12 @@ public class CenterView {
     public static void renderList(){
         listModel=new DefaultListModel<>();
 
-        ArrayList<CountryModel> countries=ResourceHouse.controller.getCountries();
+        ArrayList<CountryModel> countries=ResourceHouse.controller.getList();
         for (CountryModel c:countries
              ) {
-            listModel.addElement(c.getName());
+            if(shouldIAdd(c)){
+                listModel.addElement(c.getName());
+            }
         }
 
         list=new JList(listModel);
@@ -69,6 +71,7 @@ public class CenterView {
         });
         scrollPane = new JScrollPane(list);
         jSplitPane.setLeftComponent(scrollPane);
+        jSplitPane.setDividerLocation(150);
 
     }
 
@@ -77,4 +80,42 @@ public class CenterView {
         text.setText(c.toString());
     }
 
+
+    private static boolean shouldIAdd(CountryModel c){
+        String selectedVal;
+        try {
+           selectedVal =TopView.options.getSelectedItem().toString().trim();
+        }catch (Exception e){
+            return true;
+        }
+
+
+        if(selectedVal.equals("Death Rate")){
+
+            if(c.getDeathRate()<0){
+                return false;
+            }
+            return true;
+        }else if(selectedVal.equals("Birth Expectancy")){
+            if(c.getLifeExpectancyAtBirth()<0){
+                return false;
+            }
+            return true;
+
+        }else if(selectedVal.equals("Median Age")){
+            if(c.getMedianAge()<0){
+                return false;
+            }
+            return true;
+
+        }else if(selectedVal.equals("Electricity consumption")){
+            if(c.getElectricityConsumpCapita()<0){
+                return false;
+            }
+            return true;
+
+        }else{
+            return true;
+        }
+    }
 }

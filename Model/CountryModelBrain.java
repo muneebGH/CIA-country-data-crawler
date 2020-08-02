@@ -9,13 +9,11 @@ import java.util.stream.Stream;
 
 public class CountryModelBrain {
     ArrayList<CountryModel> countries;
-    ArrayList<ArrayList<CountryModel>> arr;
 
 
     public CountryModelBrain(ArrayList<CountryModel> countries) {
 
         this.countries = countries;
-        arr=new ArrayList<>(countries.size());
         int i=1;
         for (CountryModel c:countries
              ) {
@@ -38,89 +36,66 @@ public class CountryModelBrain {
 
     }
 
-    public void populateLatLongDifferences(){
-        int i=0;
-        for (CountryModel c:countries
-             ) {
+//    public void populateLatLongDifferences(){
+//        int i=0;
+//        for (CountryModel c:countries
+//             ) {
+//
+//            if(c.getLat()==-1 || c.getLon()==-1){
+//                continue;
+//            }
+//            ArrayList<CountryModel> inner=new ArrayList<>();
+//            inner.add(0,c);
+//            arr.add(i,inner);
+//            int y=1;
+//            for (CountryModel x:countries
+//                 ) {
+//                if(c.getName().toLowerCase().trim().equals(x.getName().toLowerCase().trim())){
+//                    continue;
+//                }
+//                if(x.getLat()==-1 || x.getLon()==-1){
+//                    continue;
+//                }
+//                double latDiff=Math.abs(c.getLat()-x.getLat());
+//                double lonDiff=Math.abs(c.getLon()-x.getLon());
+//                if(latDiff<=10 && lonDiff<=10){
+//
+//                    inner.add(y,x);
+//                }
+//
+//            }
+//
+//
+//        }
+//    }
 
-            if(c.getLat()==-1 || c.getLon()==-1){
-                continue;
-            }
-            ArrayList<CountryModel> inner=new ArrayList<>();
-            inner.add(0,c);
-            arr.add(i,inner);
-            int y=1;
-            for (CountryModel x:countries
-                 ) {
-                if(c.getName().toLowerCase().trim().equals(x.getName().toLowerCase().trim())){
-                    continue;
-                }
-                if(x.getLat()==-1 || x.getLon()==-1){
-                    continue;
-                }
-                double latDiff=Math.abs(c.getLat()-x.getLat());
-                double lonDiff=Math.abs(c.getLon()-x.getLon());
-                if(latDiff<=10 && lonDiff<=10){
+    public void sortByBirthExpectancies(){
 
-                    inner.add(y,x);
-                }
-
-            }
-
-
-        }
-    }
-
-    public ArrayList<CountryModel> topBirthExpectancies(int n){
-        System.out.println("top n countries with birthRateExpectancy:");
-        ArrayList<CountryModel> arr=new ArrayList<>(n);
         Collections.sort(countries,new BirthExpectancyComparator());
-        for(int i=0;i<n;i++){
-            arr.add(countries.get(countries.size()-(i+1)));
-        }
 
-        for (CountryModel c:arr
-        ) {
-            System.out.println(c.getName());
-        }
-
-        return arr;
     }
 
 
-    public ArrayList<CountryModel> topmedianAges(int n){
+    public void topMedianAges(){
 
-        System.out.println("top "+n+" countries with highest median age:");
-        ArrayList<CountryModel> arr=new ArrayList<>(n);
         Collections.sort(countries,new MedianAgeComparator());
-        for(int i=0;i<n;i++){
-            arr.add(countries.get(countries.size()-(i+1)));
-        }
 
-        for (CountryModel c:arr
-             ) {
-            System.out.println(c.getName());
-        }
+    }
 
-        return arr;
+    public ArrayList<CountryModel> getList(){
+        return countries;
     }
 
 
-
-    public void topDeathRateCountries(int n){
+    public void topDeathRateCountries(){
 
         Collections.sort(countries,new DeathRateComparator());
 
-        System.out.println(" list of countries with highest death rate");
-        for(int i=0;i<n;i++){
 
+    }
 
-            System.out.print(i+1+": ");
-
-            System.out.println(countries.get(countries.size()-(i+1)).getName());
-        }
-
-
+    public void sortByDefault(){
+        Collections.sort(countries,new DefaultComparator());
     }
 
 
@@ -141,19 +116,8 @@ public class CountryModelBrain {
         }
     }
 
-    public void topConsumers(int n){
+    public void topConsumers(){
         Collections.sort(countries,new ElectricityPerCapitaComparator());
-        System.out.println(" list of countries with highest Electricity per capita consumption");
-
-        for(int i=0;i<n;i++){
-
-
-            System.out.print(i+1+": ");
-
-            System.out.println(countries.get(countries.size()-(i+1)).getName());
-        }
-
-
     }
 
 
@@ -271,7 +235,6 @@ public class CountryModelBrain {
     public String toString() {
         return "CountryModelBrain{" +
                 "countries=" + countries +
-                ", arr=" + arr +
                 '}';
     }
 }

@@ -1,12 +1,14 @@
 package mine.views;
 
+import mine.Controller.ResourceHouse;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class TopView {
     JLabel arrangeText;
-    JComboBox<String> options;
+    public static JComboBox<String> options;
     JButton button;
     JLabel filterText;
     JTextField flagFilter;
@@ -20,11 +22,10 @@ public class TopView {
         button=new JButton("Filter");
         options=new JComboBox();
         options.addItem("Default");
-        options.addItem("Death rate");
-        options.addItem("Birth Rate");
+        options.addItem("Death Rate");
+        options.addItem("Birth Expectancy");
         options.addItem("Median Age");
         options.addItem("Electricity consumption");
-        options.addItem("Elevation");
         applyComboBoxListner();
 
 
@@ -49,7 +50,27 @@ public class TopView {
 
     private void applyComboBoxListner(){
         options.addActionListener(e -> {
-            System.out.println(options.getSelectedItem());
+            if(options.getSelectedItem().toString().toLowerCase().trim().equals("death rate")){
+                ResourceHouse.controller.sortByDeathRate();
+
+
+            }else if(options.getSelectedItem().toString().toLowerCase().trim().equals("electricity consumption")){
+
+
+                ResourceHouse.controller.sortByElectricityConsumption();
+
+            }else if(options.getSelectedItem().toString().toLowerCase().trim().equals("median age")){
+
+                ResourceHouse.controller.sortByMedianAge();
+
+            }else if(options.getSelectedItem().toString().toLowerCase().trim().equals("birth expectancy")){
+
+                ResourceHouse.controller.sortByBirthExpectancy();
+
+            }
+            else{
+                ResourceHouse.controller.sortByDefault();
+            }
         });
     }
 }

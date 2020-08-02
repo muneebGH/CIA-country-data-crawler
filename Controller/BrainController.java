@@ -3,6 +3,7 @@ package mine.Controller;
 import mine.Model.CountryModel;
 import mine.Model.CountryModelBrain;
 import mine.Model.CountryPopulator;
+import mine.views.CenterView;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 
@@ -18,14 +19,14 @@ public class BrainController {
     private String url;
     private CountryModelBrain brain;
     Scanner sc = new Scanner(System.in);
-    ArrayList<CountryModel> countries;
+
 
     public BrainController(String url) {
         this.url = url;
     }
 
-    public ArrayList<CountryModel> getCountries() {
-        countries = new ArrayList<>();
+    public ArrayList<CountryModel> _getCountries() {
+        ArrayList<CountryModel> countries = new ArrayList<>();
         boolean canStart = false;
 
         Connection con = Jsoup.connect(url);
@@ -58,7 +59,7 @@ public class BrainController {
 
 
     public void prepareEverything() {
-        brain = new CountryModelBrain(getCountries());
+        brain = new CountryModelBrain(_getCountries());
     }
 
     public void proneToHazards() {
@@ -96,11 +97,9 @@ public class BrainController {
         brain.getCoverageBy(continent, percent, by);
     }
 
-    public void findTopConsumers() {
-
-        sc=new Scanner(System.in);
-        System.out.println("Enter Number ");
-        brain.topConsumers(sc.nextInt());
+    public void sortByElectricityConsumption() {
+        brain.topConsumers();
+        CenterView.renderList();
     }
 
     public void findEthnicity() {
@@ -116,57 +115,57 @@ public class BrainController {
         brain.landLockedOnes();
     }
 
-    public void topDeathRates(){
+    public void sortByDeathRate(){
 
-        sc=new Scanner(System.in);
-        System.out.println("Enter Number ");
-        brain.topDeathRateCountries(sc.nextInt());
+        brain.topDeathRateCountries();
+        CenterView.renderList();
     }
 
-    public void topMedianAge(){
+    public void sortByMedianAge(){
 
-        sc=new Scanner(System.in);
-        System.out.println("Enter Number ");
-        brain.topmedianAges(sc.nextInt());
+        brain.topMedianAges();
+        CenterView.renderList();
     }
 
-    public void topExpectancy(){
-
-
-        sc=new Scanner(System.in);
-        System.out.println("Enter Number ");
-        brain.topBirthExpectancies(sc.nextInt());
+    public void sortByDefault(){
+        brain.sortByDefault();
+        CenterView.renderList();
     }
 
-    public void overlapsBetweenMedianAndExpectancy(){
-
-        sc=new Scanner(System.in);
-        System.out.println("Enter Number for median ages");
-        int m=sc.nextInt();
-        System.out.println("Enter number for birth expectancies");
-        int b=sc.nextInt();
-        ArrayList<CountryModel> arr1=brain.topmedianAges(m);
-        ArrayList<CountryModel> arr2=brain.topBirthExpectancies(b);
-
-        System.out.println("Overlaps:");
-        for(int i=0;i<m;i++){
-            String a=arr1.get(i).getName().toLowerCase().trim();
-            for(int j=0;j<b;j++){
-                String s=arr2.get(j).getName().toLowerCase().trim();
-                if(a.equals(s)) System.out.println(a);
-            }
-        }
-
+    public void sortByBirthExpectancy(){
+        brain.sortByBirthExpectancies();
+        CenterView.renderList();
     }
+//
+//    public void overlapsBetweenMedianAndExpectancy(){
+//
+//        sc=new Scanner(System.in);
+//        System.out.println("Enter Number for median ages");
+//        int m=sc.nextInt();
+//        System.out.println("Enter number for birth expectancies");
+//        int b=sc.nextInt();
+//        ArrayList<CountryModel> arr1=brain.topmedianAges(m);
+//        ArrayList<CountryModel> arr2=brain.topBirthExpectancies(b);
+//
+//        System.out.println("Overlaps:");
+//        for(int i=0;i<m;i++){
+//            String a=arr1.get(i).getName().toLowerCase().trim();
+//            for(int j=0;j<b;j++){
+//                String s=arr2.get(j).getName().toLowerCase().trim();
+//                if(a.equals(s)) System.out.println(a);
+//            }
+//        }
+//
+//    }
 
     public ArrayList getList(){
-        return countries;
+        return brain.getList();
     }
     public static void main(String[] args) {
         System.out.println("Setting up...");
         BrainController h = new BrainController("https://www.cia.gov/library/publications/the-world-factbook/print/textversion.html");
 
-         ArrayList<CountryModel> countries = h.getCountries();
+         ArrayList<CountryModel> countries = h._getCountries();
         //
         CountryPopulator.populate(countries.get(0));
        // CountryModelBrain brain = new CountryModelBrain(h.getCountries());
