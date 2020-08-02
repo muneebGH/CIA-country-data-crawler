@@ -13,7 +13,7 @@ public class Application {
     public static JFrame frame=new JFrame("CIA portal");
     public static BorderLayout borderLayout=new BorderLayout(20,20);
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
 
         frame.setLayout(borderLayout);

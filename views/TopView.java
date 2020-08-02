@@ -1,6 +1,8 @@
 package mine.views;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class TopView {
     JLabel arrangeText;
@@ -23,6 +25,7 @@ public class TopView {
         options.addItem("Median Age");
         options.addItem("Electricity consumption");
         options.addItem("Elevation");
+        applyComboBoxListner();
 
 
 
@@ -42,5 +45,11 @@ public class TopView {
     public JComponent getView(){
 
         return panel;
+    }
+
+    private void applyComboBoxListner(){
+        options.addActionListener(e -> {
+            System.out.println(options.getSelectedItem());
+        });
     }
 }
