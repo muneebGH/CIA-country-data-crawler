@@ -1,5 +1,6 @@
 package mine.Controller;
 
+import mine.Application;
 import mine.Model.CountryModel;
 import mine.Model.CountryModelBrain;
 import mine.Model.CountryPopulator;
@@ -49,7 +50,7 @@ public class BrainController {
             }
 
         } catch (IOException e) {
-            System.out.println("error in getting data");
+            Application.showInternetProblem();
             e.printStackTrace();
         }
 

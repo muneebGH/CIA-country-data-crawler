@@ -17,9 +17,9 @@ public class TopView {
 
     public TopView() {
         arrangeText =new JLabel("Arrange By");
-        filterText=new JLabel("Filter Flag Symbol");
-        flagFilter=new JTextField("Enter Symbol");
-        button=new JButton("Filter");
+//        filterText=new JLabel("Filter Flag Symbol");
+//        flagFilter=new JTextField("Enter Symbol");
+//        button=new JButton("Filter");
         options=new JComboBox();
         options.addItem("Default");
         options.addItem("Death Rate");
@@ -39,9 +39,9 @@ public class TopView {
         panel.add(arrangeText);
         panel.add(options);
 
-        panel.add(filterText);
-        panel.add(flagFilter);
-        panel.add(button);
+//        panel.add(filterText);
+//        panel.add(flagFilter);
+//        panel.add(button);
 
     }
 
