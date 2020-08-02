@@ -21,17 +21,8 @@ public class CenterView {
     private  static JTextArea text;
     public CenterView() throws InterruptedException {
         jSplitPane=new JSplitPane();
-        text=new JTextArea("Lorem ipsum dolor sit amet, consectetur adipis\n" +
-                "cing elit, sed do eiusmod tempor incididunt ut labore et do\n" +
-                "lore magna aliqua. Ut enim ad minim veniam, quis nostrud exerci\n" +
-                "tation ullamco laboris nisi ut aliquip ex ea commodo consequat. \n" +
-                "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum\n" +
-                " dolore eu fugiat nulla pariatur. Excepteur sint \n" +
-                "occaecat cupidatat non proident, sunt\n" +
-                " in culpa qui officia deserunt mollit anim id est laborum.\n");
-        text.setEditable(false);
         renderList();
-        jSplitPane.setRightComponent(text);
+
 
 
 
@@ -43,10 +34,11 @@ public class CenterView {
         return jSplitPane;
     }
 
-    public static void renderList(){
+    public static void renderList(ArrayList<CountryModel> countries){
+        text=new JTextArea("No Items Selected : select items to display details");
+        text.setEditable(false);
         listModel=new DefaultListModel<>();
 
-        ArrayList<CountryModel> countries=ResourceHouse.controller.getList();
         for (CountryModel c:countries
              ) {
             if(shouldIAdd(c)){
@@ -72,9 +64,15 @@ public class CenterView {
         scrollPane = new JScrollPane(list);
         jSplitPane.setLeftComponent(scrollPane);
         jSplitPane.setDividerLocation(150);
+        jSplitPane.setRightComponent(text);
 
     }
 
+
+
+    public static void renderList(){
+        renderList(ResourceHouse.controller.getList());
+    }
 
     private static void beautifyAndInsert(CountryModel c){
         text.setText(c.toString());
