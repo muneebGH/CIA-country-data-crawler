@@ -4,6 +4,7 @@ import mine.Controller.Bridge;
 import mine.Controller.Utils;
 import mine.views.CenterView;
 import mine.views.SplashView;
+import mine.views.TopView;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,6 +20,7 @@ public class Application {
         frame.setSize(700,600);
        // Application.setAppData();
         frame.add(new CenterView().getView(),borderLayout.CENTER);
+        frame.add(new TopView().getView(),borderLayout.NORTH);
         frame.setVisible(true);
 
     }
