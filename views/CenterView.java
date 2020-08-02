@@ -7,6 +7,9 @@ import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
@@ -35,7 +38,8 @@ public class CenterView {
 
     public static void renderList(ArrayList<CountryModel> countries){
         text=new JTextArea("No Items Selected : select items to display details");
-        Font font = new Font("Verdana", Font.BOLD, 12);
+        Font font;
+        font = new Font("Verdana", Font.PLAIN, 13);
         text.setFont(font);
         text.setBackground(Color.blue);
         text.setForeground(Color.WHITE);

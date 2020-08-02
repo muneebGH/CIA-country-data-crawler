@@ -15,7 +15,7 @@ public class SplashView {
         progressBar.setString("populating ...");
         progressBar.setStringPainted(true);
         window.getContentPane().add(progressBar,SwingConstants.CENTER);
-        window.setBounds(500, 150, 300, 200);
+        window.setBounds(500, 150, 400, 200);
 
     }
 

@@ -19,7 +19,7 @@ public class Application {
 
 
         frame.setLayout(borderLayout);
-        frame.setSize(700,600);
+        frame.setSize(850,650);
         try {
             try {
                 Application.setAppData();

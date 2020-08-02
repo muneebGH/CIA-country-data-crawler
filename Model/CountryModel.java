@@ -266,12 +266,12 @@ public class CountryModel {
     @Override
     public String toString() {
         return "" +
-                "\nName : " + name + "" +
-                "\n\nURL : " + url + "" +
-                "\n\nFlag Description : " + flagDesc + "" +
-                "\n\nHazards : " + hazards + "" +
-                "\nProne To EarthQuake : " + proneToEQ +
-                "\nLowest Elevation point : " + lowestElevation +
+                "\n\n\n Name : " + name + "" +
+                "\n URL : " + url + "" +
+                "\n Flag Description : " + flagDesc + "" +
+                "\n Hazards : " + hazards + "" +
+                "\n Prone To EarthQuake : " + proneToEQ +
+                "\n Lowest Elevation point : " + lowestElevation +
                 "\n Forest Coverage : " + forestCoverage +
                 "\n Electricity Consumption Total : " + electricityConsumpTotal +
                 "\n Electricity Consumption per Capita : " + electricityConsumpCapita +

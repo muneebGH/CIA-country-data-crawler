@@ -3,6 +3,7 @@ package mine.views;
 import mine.Controller.ResourceHouse;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -36,6 +37,9 @@ public class TopView {
         //add in panel
         panel=new JPanel();
 
+        JLabel copyright=new JLabel("Scrapped from www.cia.gov");
+        copyright.setForeground(Color.RED);
+        panel.add(copyright);
         panel.add(arrangeText);
         panel.add(options);
 
