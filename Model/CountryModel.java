@@ -1,4 +1,4 @@
-package mine.Model;
+package mine;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -1,4 +1,4 @@
-package mine.Controller;
+package mine;
 
 import java.io.IOException;
 import java.net.MalformedURLException;

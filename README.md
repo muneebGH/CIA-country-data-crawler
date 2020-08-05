@@ -9,3 +9,9 @@
 3. Download dependencies
 4. goto File -> Project Structure -> Libraries -> click (+) to add dependency
 5. Apply and run Application.main()
+
+##DEMO
+* #### loading
+![loading screen](imgs/splash.png)
+* #### App
+![App home](imgs/app.png)

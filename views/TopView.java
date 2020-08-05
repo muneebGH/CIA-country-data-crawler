@@ -1,11 +1,9 @@
-package mine.views;
+package mine;
 
-import mine.Controller.ResourceHouse;
+import mine.ResourceHouse;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class TopView {
     JLabel arrangeText;

@@ -1,9 +1,6 @@
-package mine.views;
-
-import mine.Controller.ResourceHouse;
+package mine;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class SplashView {
     private static JWindow window ;

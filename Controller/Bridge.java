@@ -1,6 +1,4 @@
-package mine.Controller;
-
-import mine.views.SplashView;
+package mine;
 
 public class Bridge {
     public static void passDataToSplash(String text,int completedCountries){

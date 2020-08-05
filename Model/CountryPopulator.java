@@ -1,4 +1,4 @@
-package mine.Model;
+package mine;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;

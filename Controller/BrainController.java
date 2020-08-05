@@ -1,10 +1,5 @@
-package mine.Controller;
+package mine;
 
-import mine.Application;
-import mine.Model.CountryModel;
-import mine.Model.CountryModelBrain;
-import mine.Model.CountryPopulator;
-import mine.views.CenterView;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 
